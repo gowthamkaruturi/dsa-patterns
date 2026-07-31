@@ -38,6 +38,31 @@ Personal DSA and System Design interview prep repo. Used alongside the AI Engine
 - [ ] API design: REST vs gRPC vs GraphQL
 - Resource: "System Design Interview" by Alex Xu, ByteByteGo YouTube, Gaurav Sen YouTube
 
+## NoSQL Database Design Notes (consolidated from dynamodb repo)
+Amazon DynamoDB is a managed, serverless NoSQL database built for consistent performance at scale. Key principles to know for system design interviews:
+
+- Serverless architecture - no server provisioning or management required.
+- Automatic partitioning and scaling to handle high, variable request rates.
+- Data is replicated across multiple AWS Availability Zones for durability and high availability.
+- DynamoDB Streams enable event-driven patterns via Lambda triggers.
+- Supports both key-value and flexible document data models.
+- ACID transactions are supported for data integrity.
+- Security via VPC isolation, encryption at rest/in transit, and IAM access control.
+
+Single-table vs multi-table design:
+- Single-table design works best with well-known access patterns, and can be more cost-efficient and faster for retrieval, at the cost of implementation complexity.
+- Multi-table design is more intuitive coming from relational databases, offers better isolation and independent scaling per table, but can mean higher cost and extra requests for related data.
+
+Capacity modes:
+- On-demand: DynamoDB scales automatically to actual traffic; good for unpredictable workloads, pay-per-request.
+- Provisioned: you specify expected read/write throughput (optionally with auto-scaling); more cost-effective for predictable, steady workloads.
+
+Scaling implications tie back to the single vs multi-table decision: single-table centralizes and simplifies scaling/cost management, while multi-table allows independent, granular scaling and better workload isolation per table.
+
+- [ ] Review DynamoDB single-table vs multi-table tradeoffs
+- [ ] Review on-demand vs provisioned capacity tradeoffs
+- [ ] Practice: design a system using DynamoDB as the primary data store
+
 ## System Design Practice Problems
 - [ ] Design a URL Shortener
 - [ ] Design a Rate Limiter
