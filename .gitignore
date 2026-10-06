@@ -1,2 +1,5 @@
 .vscode
-.idea
+.idea.DS_Store
+__pycache__/
+.pytest_cache/
+*.class
